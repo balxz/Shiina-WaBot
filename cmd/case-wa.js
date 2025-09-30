@@ -1,16 +1,16 @@
 /**
-     * Copyright © 2025 [ balxzzy ]
-     *
-     * All rights reserved. This source code is the property of [ Shiina Team ].
-     * Unauthorized copying, distribution, modification, or use of this file,
-     * via any medium, is strictly prohibited without prior written permission.
-     *
-     * This software is protected under international copyright laws.
-     *
-     * Contact: [ pa424013@gmail.com ]
-     * GitHub: https://github.com/balxz
-     * Official: https://balxzzy.web.id
-     * Support: https://t.me/sh_team1
+ * Copyright © 2025 [ balxzzy ]
+ *
+ * All rights reserved. This source code is the property of [ Shiina Team ].
+ * Unauthorized copying, distribution, modification, or use of this file,
+ * via any medium, is strictly prohibited without prior written permission.
+ *
+ * This software is protected under international copyright laws.
+ *
+ * Contact: [ pa424013@gmail.com ]
+ * GitHub: https://github.com/balxz
+ * Official: https://balxzzy.web.id
+ * Support: https://t.me/sh_team1
  */
 require("#src/configs")
 const {
@@ -24,23 +24,41 @@ const {
 const Plugins = require("#/cmd/handler")
 const util = require("util")
 const { exec } = require("child_process")
+const fs = require("fs")
+
 module.exports = async (clients, m, mek, scraper) => {
     try {
         let body = m.body || ""
-        let prefix = ""
-        let isCmd = body.startsWith(prefix)
-        let cmd = isCmd ? body.replace(prefix, "").trim().split(/ +/).shift().toLowerCase() : ""
-        let args = body.trim().split(/ +/).slice(1)
-        let text = args.join(" ")
+        let isCmd = false
+        let cmd = ""
+        let args = []
+        let text = ""
+
+        if (set.prefix && Array.isArray(set.prefix)) {
+            let usedPrefix = set.prefix.find(p => body.startsWith(p))
+            if (usedPrefix) {
+                isCmd = true
+                cmd = body.slice(usedPrefix.length).trim().split(/ +/).shift().toLowerCase()
+                args = body.trim().split(/ +/).slice(1)
+                text = args.join(" ")
+            }
+        } else {
+            isCmd = true
+            cmd = body.trim().split(/ +/).shift().toLowerCase()
+            args = body.trim().split(/ +/).slice(1)
+            text = args.join(" ")
+        }
+
+        if (!isCmd) return
         let is = await require("#declare/Prehandler").is(m)
 
         switch (cmd) {
             case "ev": { // @owner @eval
                 if (!is.owner) return m.reply("This command can only be used by the owner.")
-                let duh = body.slice(2).trim() || "return m"
+                let duh = body.slice(body.indexOf(cmd) + cmd.length).trim() || "return m"
                 try {
                     let evaled = await eval(`(async () => { ${duh} })()`)
-                    if (typeof evaled !== "string") evaled = require("util").inspect(evaled)
+                    if (typeof evaled !== "string") evaled = util.inspect(evaled)
                     await m.reply(evaled)
                 } catch (err) {
                     m.reply(String(err))
@@ -50,7 +68,7 @@ module.exports = async (clients, m, mek, scraper) => {
 
             case "exc": { // @owner @exec
                 if (!is.owner) return m.reply("This command can only be used by the owner.")
-                let duh = body.slice(3).trim() || "ls"
+                let duh = body.slice(body.indexOf(cmd) + cmd.length).trim() || "ls"
                 exec(duh, (err, stdout) => {
                     if (err) return m.reply(`${err}`)
                     if (stdout) return m.reply(stdout)
@@ -61,7 +79,7 @@ module.exports = async (clients, m, mek, scraper) => {
             default:
                 await Plugins.connect({
                     m,
-                    prefix,
+                    prefix: set.prefix,
                     cmd,
                     args,
                     text,
@@ -78,11 +96,9 @@ module.exports = async (clients, m, mek, scraper) => {
     } catch (err) {
         console.error(err)
         await clients.sendMessage(
-            owner.no[0] + "@s.whatsapp.net", {
-                text: `${err}`
-            }, {
-                quoted: m
-            }
+            owner.no[0] + "@s.whatsapp.net",
+            { text: `${err}` },
+            { quoted: m }
         )
     }
 }

@@ -19,6 +19,7 @@ global.owner = {
 }
 
 global.set = {
+    prefix: ["!", "."],
     self: true, // false self
     read: false, // true? read new cht
     anticall: true, // rejected pas di tlp

@@ -92,14 +92,14 @@ setTimeout(() => {
     //console.log("\n")
     
     try {
-        require("./connect.js")
+        require("./connect")
     } catch (e) {
         console.log("\n")
-        console.log(chalk.red("  ═".repeat(30)))
-        console.log(chalk.bold.red("   ERROR"))
-        console.log(chalk.red("  ═".repeat(30)))
-        console.log(chalk.white("  " + e.message))
-        console.log(chalk.red("  ═".repeat(30)))
+        console.log(chalk.red("═".repeat(10)))
+        console.log(chalk.bold.red("ERROR"))
+        console.log(chalk.red("═".repeat(10)))
+        console.log(chalk.white("" + e.stack))
+        console.log(chalk.red("═".repeat(10)))
         console.log("\n")
         process.exit(1)
     }
@@ -107,21 +107,21 @@ setTimeout(() => {
 
 process.on("unhandledRejection", (e) => {
     console.log("\n")
-    console.log(chalk.yellow("  ═".repeat(30)))
-    console.log(chalk.bold.yellow("    Unhandled Rejection"))
-    console.log(chalk.yellow("  ═".repeat(30)))
-    console.log(chalk.white("  " + e.message))
-    console.log(chalk.yellow("  ═".repeat(30)))
+    console.log(chalk.yellow("═".repeat(10)))
+    console.log(chalk.bold.yellow("Unhandled Rejection"))
+    console.log(chalk.yellow("═".repeat(10)))
+    console.log(chalk.white("" + e.stack))
+    console.log(chalk.yellow("═".repeat(10)))
     console.log("\n")
 })
 
 process.on("uncaughtException", (e) => {
     console.log("\n")
-    console.log(chalk.red("  ═".repeat(30)))
-    console.log(chalk.bold.red("   Uncaught Exception"))
-    console.log(chalk.red("  ═".repeat(30)))
-    console.log(chalk.white("  " + e.message))
-    console.log(chalk.red("  ═".repeat(30)))
+    console.log(chalk.red("═".repeat(10)))
+    console.log(chalk.bold.red("Uncaught Exception"))
+    console.log(chalk.red("═".repeat(10)))
+    console.log(chalk.white("" + e.stack))
+    console.log(chalk.red("═".repeat(10)))
     console.log("\n")
     process.exit(1)
 })
