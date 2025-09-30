@@ -1,8 +1,12 @@
+### privew
+---
 ![ss](https://github.com/balxz/akuuu-muaakk/raw/refs/heads/main/Screenshot_20250930-183237.jpg)
+---
 ![ss](https://github.com/balxz/akuuu-muaakk/raw/refs/heads/main/Screenshot_20250930-183356.jpg)
+---
 ![ss](https://github.com/balxz/akuuu-muaakk/raw/refs/heads/main/IMG-20250930-WA0070.jpg)
-
-hallo min🪷, dibaca ya.
+---
+# hallo min🪷, dibaca ya.
 
 script ini memiliki aturan.
 berikut:
