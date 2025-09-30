@@ -108,7 +108,7 @@ ya itu di awal adalh category, jika @main, dia bakal ada di category main saat C
 untuk yang ke dua itu adalah command yang akna di tampilkan di menu.
 
 ### penjelasan pengguna-an scrap
-```
+```javascript
 module.exports = {
     alias: ["sy", "say", "saying"],
     command: ["saying"],
