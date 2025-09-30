@@ -80,6 +80,7 @@ module.exports = async (clients, m, mek, scraper) => {
                 await Plugins.connect({
                     m,
                     prefix: set.prefix,
+                    body,
                     cmd,
                     args,
                     text,

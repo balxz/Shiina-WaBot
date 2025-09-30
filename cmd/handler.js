@@ -52,7 +52,7 @@ const Plugins = {
                         plgns.push(plugin)
                     }
                 } catch (e) {
-                    console.error(`${filePath}\n`, e)
+                    console.error(`${filePath}\n`, e.stack)
                 }
             }
         }
@@ -65,7 +65,7 @@ const Plugins = {
             plugins = updated
             console.log(`[ 🪷 ] reload ${plugins.length} plug`)
         } catch (e) {
-            console.error("Failed to reload plugins\n", e)
+            console.error("Failed to reload plugins\n", e.stack)
         }
     },
 
@@ -92,7 +92,7 @@ const Plugins = {
                             await plugin(m, { ...data, is })
                         }
                     } catch (e) {
-                        console.error(`${plugin.path}\n`, e)
+                        console.error(`${plugin.path}\n`, e.stack)
                         m.reply(`> ${plugin.path}\n${e}`)
                     }
                 }
@@ -145,7 +145,7 @@ const Plugins = {
                     await m.react("")
                     return r
                 } catch (e) {
-                    console.error(`${plugin.path}\n`, e)
+                    console.error(`${plugin.path}\n`, e.stack)
                     let ppk = `乂 — N E W  E R R O R\n`
                     ppk += `> *command*: ${ma}\n`
                     ppk += `> *file*: ${plugin.path}\n`
