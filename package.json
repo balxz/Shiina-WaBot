@@ -1,10 +1,23 @@
 {
-  "name": "SH-BOT",
+  "name": "sh-bot",
   "version": "1.0.0",
+  "description": "A WhatsApp bot based on Shiina-WaBot",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
-    "start": "node ."
+    "start": "node .",
+    "dev": "node --watch .",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "whatsapp",
+    "bot",
+    "baileys",
+    "telegraf",
+    "automation"
+  ],
+  "author": "balxz",
+  "license": "MIT",
   "dependencies": {
     "@sh/bot": "npm:@shennmine/baileys",
     "@sh/tg": "npm:telegraf@4.16.3",
@@ -20,12 +33,34 @@
     "module-alias": "^2.2.3",
     "moment": "latest",
     "pino": "^9.7.0",
-    "util": "^0.12.5"
+    "util": "^0.12.5",
+    "qrcode-terminal": "^0.12.0",
+    "node-cron": "^3.0.3",
+    "form-data": "^4.0.0",
+    "fluent-ffmpeg": "^2.1.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "nodemon": "^3.0.0"
   },
   "_moduleAliases": {
     "#": ".",
     "#src": "src",
     "#declare": "src/declare",
-    "#scrapers": "src/scrapers"
-  }
+    "#scrapers": "src/scrapers",
+    "#lib": "src/lib",
+    "#database": "src/database",
+    "#utils": "src/utils"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/balxz/Shiina-WaBot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/balxz/Shiina-WaBot/issues"
+  },
+  "homepage": "https://github.com/balxz/Shiina-WaBot#readme"
 }
