@@ -1,0 +1,9 @@
+node_modules
+.next
+.git
+package-lock.json
+database.json
+/src/session/
+/src/configs.js
+.env
+ajajir

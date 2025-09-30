@@ -1,0 +1,31 @@
+{
+  "name": "SH-BOT",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "dependencies": {
+    "@sh/bot": "npm:@shennmine/baileys",
+    "@sh/tg": "npm:telegraf@4.16.3",
+    "axios": "^1.9.0",
+    "cfonts": "^3.3.1",
+    "chalk": "^4.1.2",
+    "cheerio": "^1.0.0-rc.12",
+    "chokidar": "^4.0.3",
+    "figlet": "^1.9.3",
+    "gradient-string": "^2.0.2",
+    "js-beautify": "^1.15.4",
+    "js-confuser": "^2.0.0",
+    "module-alias": "^2.2.3",
+    "moment": "latest",
+    "pino": "^9.7.0",
+    "util": "^0.12.5"
+  },
+  "_moduleAliases": {
+    "#": ".",
+    "#src": "src",
+    "#declare": "src/declare",
+    "#scrapers": "src/scrapers"
+  }
+}
