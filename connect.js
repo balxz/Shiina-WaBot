@@ -22,7 +22,7 @@ require("#src/configs");
     const pino = require("pino")
     const { tggl, jam } = require("#declare/Func")
     const Database = require("#declare/Database")
-    global.scraper = new(await require("#scrapers"))("src/scrapers/src")
+    global.scraper = new (await require("#scrapers"))("src/scrapers/src")
     global.db = new Database("database.json")
     await db.init()
     await scraper.load()
@@ -49,14 +49,14 @@ require("#src/configs");
             let code = await clients.requestPairingCode(ph, "AAAAAAAA")
             code = code?.match(/.{1,4}/g)?.join("-") || code
             let tx = "— Pairing Request\n"
-                tx += ` ◦ ✧ owner: ${owner.name}\n`
-                tx += ` ◦ ✧ hour: ${jam()}\n`
-                tx += ` ◦ ✧ days: ${tggl()}\n`
-                tx += `${new Date()}\n`
-                tx += `Your Pairing Code ${code}`
+            tx += ` ◦ ✧ owner: ${owner.name}\n`
+            tx += ` ◦ ✧ hour: ${jam()}\n`
+            tx += ` ◦ ✧ days: ${tggl()}\n`
+            tx += `${new Date()}\n`
+            tx += `Your Pairing Code ${code}`
             console.log(tx)
         }
-        
+
         clients.decodeJid = jid => {
             if (!jid) return jid
             if (/:\d+@/gi.test(jid)) {
@@ -69,7 +69,7 @@ require("#src/configs");
             try {
                 let mek = chatUpdate.messages[0]
                 global.m = require("./src/simple").smsg(clients, mek)
-                if (set.self && ![ `${owner.no[0]}@s.whatsapp.net`, clients.user.id ].includes(m.sender)) return 
+                if (set.self && ![`${owner.no[0]}@s.whatsapp.net`, clients.user.id].includes(m.sender)) return
                 await db.main(m)
                 if (set.frmBot) {
                     if (m.fromMe) return
@@ -99,11 +99,11 @@ require("#src/configs");
                 console.log("[ 🪷 ] — connecting")
             }
         })
-        
+
         clients.ev.on("call", async (sihama) => {
-            if (!set.anticall) return 
+            if (!set.anticall) return
             for (let hama of sihama) {
-                if(hama.isGroup == false) {
+                if (hama.isGroup == false) {
                     if (hama.status == "offer") {
                         await m.reply("*Hallo.*\n_pengguna saat ini tidak dapat menerima telefon._\n_silahkan tinggalkan pesan penting anda._")
                         if (set.block) {
@@ -116,7 +116,7 @@ require("#src/configs");
         })
 
         clients.ev.on("creds.update", saveCreds)
-        
+
     }
 
     async function tele() {
@@ -130,14 +130,14 @@ require("#src/configs");
             })
             client.launch()
         })
-    
+
         process.once("SIGINT", () => tkny.forEach(c => c.stop("SIGINT")))
         process.once("SIGTERM", () => tkny.forEach(c => c.stop("SIGTERM")))
-    
+
         console.log("TGBOT ONLINE")
         return tkny
     }
-    
+
     tele()
     clientstart()
 })()
