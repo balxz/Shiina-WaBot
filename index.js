@@ -35,9 +35,9 @@ console.log("\n")
 
 let f = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]
 let steps = [
-    { t: "Initializing Shiina Bot...", c: g1 },
-    { t: "Loading Modules...", c: g2 },
-    { t: "Connecting To WhatsApp...", c: (x) => chalk.hex("#8B5CF6")(x) }
+    { t: "Initializing Shiina Bot", c: g1 },
+    { t: "Loading Modules", c: g2 },
+    { t: "Connecting To WhatsApp", c: (x) => chalk.hex("#8B5CF6")(x) }
 ]
 
 let si = 0
@@ -61,13 +61,11 @@ setTimeout(() => {
     clearInterval(intv)
     process.stdout.clearLine(0)
     process.stdout.cursorTo(0)
-    console.log(chalk.bold.greenBright(" SHIINA WABOT IS ONLINE") + "\n")
-    
-    //console.log(chalk.bold.hex("#FF6B9D")("   FEATURES"))
-    let menu = Func.menu()
-    let apcb = Object.values(menu).reduce((a, b) => a + b.length, 0)
+    console.log(chalk.bold.greenBright("SHIINA WABOT IS ONLINE"))
+    let abcd = Func.menu()
+    let apcb = Object.values(abcd).reduce((a, b) => a + b.length, 0)
     //console.log()
-    console.log(chalk.bold.hex("#FF6B9D")("   TOTAL FEATURES " + apcb))
+    console.log(chalk.bold.hex("#FF6B9D")("TOTAL FEATURES: " + apcb))
     /*for (let cat in menu) {
         menu[cat].forEach(item => {
             console.log(chalk.white("  • " + item.name))
@@ -75,9 +73,9 @@ setTimeout(() => {
     }*/
     
     //console.log(chalk.cyan("  ━".repeat(30)))
-    console.log(chalk.bold.hex("#06b6d4")("\n   Writing, request pairing...\n"))
+    console.log(chalk.bold.hex("#06b6d4")("Writing, request pairing...\n"))
     //console.log(chalk.gray("  ─".repeat(60)))
-    console.log("\n")
+    //console.log("\n")
     
     try {
         require("./connect.js")
