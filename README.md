@@ -125,7 +125,7 @@ module.exports = {
     }
 }
 ```
-folder nya ada di `src/scrapers`
+_`src/scrapers`_
 ---
 ingin contribusi?, langsung aja fork repo ini dan pull request, insyaallah aku acc❤️
 
