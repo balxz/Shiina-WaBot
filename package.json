@@ -19,7 +19,7 @@
   "author": "balxz",
   "license": "MIT",
   "dependencies": {
-    "@sh/bot": "npm:@itsukichan/baileys",
+    "@sh/bot": "github:balxz/b",
     "@sh/tg": "npm:telegraf@4.16.3",
     "axios": "^1.9.0",
     "cfonts": "^3.3.1",
