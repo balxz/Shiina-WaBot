@@ -27,17 +27,16 @@
     "cheerio": "^1.0.0-rc.12",
     "chokidar": "^4.0.3",
     "figlet": "^1.9.3",
+    "fluent-ffmpeg": "^2.1.2",
+    "form-data": "^4.0.0",
     "gradient-string": "^2.0.2",
     "js-beautify": "^1.15.4",
     "js-confuser": "^2.0.0",
     "module-alias": "^2.2.3",
     "moment": "latest",
-    "pino": "^9.7.0",
-    "util": "^0.12.5",
-    "qrcode-terminal": "^0.12.0",
     "node-cron": "^3.0.3",
-    "form-data": "^4.0.0",
-    "fluent-ffmpeg": "^2.1.2"
+    "pino": "^9.7.0",
+    "util": "^0.12.5"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

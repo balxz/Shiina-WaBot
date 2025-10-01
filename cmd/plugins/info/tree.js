@@ -23,7 +23,7 @@ module.exports = {
     owner: false,
     handler: async m => {
         let dir = process.cwd()
-        let kecuali = ["node_modules", "src/session", ".npm", ".cache"]
+        let kecuali = ["node_modules", "src/session", ".npm", ".cache", ".git"]
         let tree = ""
         let traverse = (dir, prefix = "") => {
             let files = fs.readdirSync(dir)

