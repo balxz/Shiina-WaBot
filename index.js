@@ -47,34 +47,7 @@ console.log(chalk.hex("#10b981")("   Status      : ") + chalk.bold.greenBright("
 console.log(chalk.cyan("═".repeat(60)))
 console.log("\n")
 
-let f = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]
-let steps = [
-    { t: "Initializing Shiina Bot", c: g1 },
-    { t: "Loading Modules", c: g2 },
-    { t: "Connecting To WhatsApp", c: (x) => chalk.hex("#8B5CF6")(x) }
-]
-
-let si = 0
-let fr = 0
-let counter = 0
-
-let intv = setInterval(() => {
-    let s = steps[si]
-    process.stdout.clearLine(0)
-    process.stdout.cursorTo(0)
-    process.stdout.write(chalk.cyan(f[fr]) + " " + s.c(s.t))  
-    fr = (fr + 1) % f.length
-    counter++
-    if (counter % 10 === 0) {
-        si++
-        if (si >= steps.length) si = steps.length - 1
-    }
-}, 80)
-
 setTimeout(() => {
-    clearInterval(intv)
-    process.stdout.clearLine(0)
-    process.stdout.cursorTo(0)
     console.log(chalk.bold.greenBright("SHIINA WABOT IS ONLINE"))
     let abcd = Func.menu()
     let apcb = Object.values(abcd).reduce((a, b) => a + b.length, 0)
