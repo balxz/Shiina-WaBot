@@ -128,7 +128,7 @@ module.exports = {
     group: false,
     admin: false
     handler: async (m, { prefix, cmd, args, text, is, Plugins, scrap, db, tggl, jam, runtime }) => {
-        let a = await scrap.say(text)
+        let a = await scrap.say.send(text)
         m.reply(a)
     }
 }
