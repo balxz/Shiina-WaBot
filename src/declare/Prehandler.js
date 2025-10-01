@@ -15,14 +15,15 @@
 require("#src/configs")
 
 exports.is = async (m) => {
+let a = m.isGroup ? m.key.participantAlt : m.key.remoteJid
   return {
-    owner: [...owner.no.map((a) => a + "@s.whatsapp.net")].includes(m.sender),
+    owner: [...owner.no.map((a) => a + "@s.whatsapp.net")].includes(a),
     group: m.chat.endsWith("@g.us"),
     private: m.chat.endsWith("@s.whatsapp.net"),
     admin: m.chat.endsWith("@g.us") &&
-      (await clients.groupMetadata(m.chat).catch(() => null))?.participants?.some(v => v.admin && v.id === m.sender),
+      (await clients.groupMetadata(m.chat).catch(() => null))?.participants?.some(v => v.admin && v.phoneNumber === a),
     botadmin: m.chat.endsWith("@g.us") &&
-      (await clients.groupMetadata(m.chat).catch(() => null))?.participants?.some(v => v.admin && v.id === clients.decodeJid(clients.user.id))
+      (await clients.groupMetadata(m.chat).catch(() => null))?.participants?.some(v => v.admin && v.phoneNumber === clients.decodeJid(clients.user.id))
   }
 }
 
