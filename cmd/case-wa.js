@@ -28,7 +28,20 @@ const fs = require("fs")
 
 module.exports = async (clients, m, mek, scraper) => {
     try {
-        let body = m.body || ""
+        ////???? pakai split ?. biar gk null ygy
+        let body = (
+            m?.mtype === "conversation" ? m?.message?.conversation :
+            m?.mtype === "imageMessage" ? m?.message?.imageMessage?.caption :
+            m?.mtype === "videoMessage" ? m?.message?.videoMessage?.caption :
+            m?.mtype === "extendedTextMessage" ? m?.message?.extendedTextMessage?.text :
+            m?.mtype === "buttonsResponseMessage" ? m?.message?.buttonsResponseMessage?.selectedButtonId :
+            m?.mtype === "listResponseMessage" ? m?.message?.listResponseMessage?.singleSelectReply?.selectedRowId :
+            m?.mtype === "templateButtonReplyMessage" ? m?.message?.templateButtonReplyMessage?.selectedId :
+            m?.mtype === "interactiveResponseMessage" ? JSON.parse(m?.msg?.nativeFlowResponseMessage?.paramsJson || "{}")?.id :
+            m?.mtype === "messageContextInfo" ? m?.message?.buttonsResponseMessage?.selectedButtonId ||
+            m?.message?.listResponseMessage?.singleSelectReply?.selectedRowId || m?.text || m?.body : ""
+        ) || ""
+
         let isCmd = false
         let cmd = ""
         let args = []
@@ -42,14 +55,14 @@ module.exports = async (clients, m, mek, scraper) => {
                 args = body.trim().split(/ +/).slice(1)
                 text = args.join(" ")
             }
-        } else {
+        } else if (body) {
             isCmd = true
-            cmd = body.trim().split(/ +/).shift().toLowerCase()
+            cmd = body.trim().split(/ +/).shift().toLowerCase() || m?.quoted?.body?.text || ""
             args = body.trim().split(/ +/).slice(1)
             text = args.join(" ")
         }
 
-        if (!isCmd) return
+        if (!isCmd || !cmd) return
         let is = await require("#declare/Prehandler").is(m)
 
         switch (cmd) {
@@ -68,8 +81,8 @@ module.exports = async (clients, m, mek, scraper) => {
 
             case "exc": { // @owner @exec
                 if (!is.owner) return m.reply("This command can only be used by the owner.")
-                let duh = body.slice(body.indexOf(cmd) + cmd.length).trim() || "ls"
-                exec(duh, (err, stdout) => {
+                let execCmd = body.slice(body.indexOf(cmd) + cmd.length).trim() || "ls"
+                exec(execCmd, (err, stdout) => {
                     if (err) return m.reply(`${err}`)
                     if (stdout) return m.reply(stdout)
                 })
@@ -94,13 +107,22 @@ module.exports = async (clients, m, mek, scraper) => {
                 })
                 break
         }
-    } catch (err) {
-        console.error(err)
-      /*  await clients.sendMessage(
-            owner.no[0] + "@s.whatsapp.net",
-            { text: `${err}` },
-            { quoted: m }
-        )*/
+    } catch (e) {
+        console.error(e.stack)
+        let ppk = `乂 NEW ERROR\n`
+        ppk += `> file: ${__filename}\n`
+        ppk += `> sender: ${m?.sender}\n`
+        ppk += `> from: ${m?.chat}\n\n`
+        ppk += `[ ERROR LOGS ]\n`
+        ppk += `\`\`\`${e?.stack || e}\`\`\`` + "\n"
+        ppk += "━".repeat(15)
+        await clients.sendMessage(
+            owner.no[0] + "@s.whatsapp.net", {
+                text: ppk
+            }, {
+                quoted: m
+            }
+        )
     }
 }
 

