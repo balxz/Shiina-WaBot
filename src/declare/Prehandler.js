@@ -16,7 +16,7 @@ const fs = require("fs")
 require("#src/configs")
 
 exports.is = async (m) => {
-  let a = m.isGroup ? m.key.participantAlt : m.key.remoteJid
+  let a = m.isGroup ? m.key.participant : m.key.remoteJid
   let mtdt = { participants: [], subject: "-" }
 
   if (m.isGroup) {
