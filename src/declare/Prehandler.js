@@ -18,11 +18,11 @@ require("#src/configs")
 exports.is = async (m) => {
   if (!m.message) return
   let isgr = m.isGroup
-  let bbi = {}
+  let bbi = { participants: [], subject: "-" }
 
   if (isgr) {
     try {
-      bbi = await clients.groupMetadata(m.chat)
+      bbi = await clients.groupMetadata(m.chat).catch(() => null)
     } catch (e) {
       console.log(e.stack)
     }

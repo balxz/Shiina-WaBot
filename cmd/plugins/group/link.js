@@ -17,6 +17,7 @@ module.exports = {
     command: ["linkgc"],
     tags: ["group"],
     group: true,
+    botadmin: true,
     handler: async m => {
         let a = await clients.groupMetadata(m.chat)
         let kntl = `> — ( *${a.subject}* )\n`
