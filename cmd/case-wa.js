@@ -96,11 +96,11 @@ module.exports = async (clients, m, mek, scraper) => {
         }
     } catch (err) {
         console.error(err)
-        await clients.sendMessage(
+      /*  await clients.sendMessage(
             owner.no[0] + "@s.whatsapp.net",
             { text: `${err}` },
             { quoted: m }
-        )
+        )*/
     }
 }
 

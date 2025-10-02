@@ -33,7 +33,7 @@ require("#src/configs");
     }, 2000)
 
     async function clientstart() {
-        const { state, saveCreds } = await bail.useMultiFileAuthState(pair.sesi)
+        const { state, saveCreds } = await bail.shUseMultiFileAuthState(pair.sesi)
         global.clients = bail.makeWASocket({
             logger: pino({
                 level: "silent"
@@ -46,7 +46,7 @@ require("#src/configs");
         if (pair.isPair && !clients.authState.creds.registered) {
             let ph = pair.no.replace(/[^0-9]/g, "")
             await bail.delay(3000)
-            let code = await clients.requestPairingCode(ph, "AAAAAAAA")
+            let code = await clients.requestPairingCode(ph)
             code = code?.match(/.{1,4}/g)?.join("-") || code
             let tx = "— Pairing Request\n"
             tx += ` ◦ ✧ owner: ${owner.name}\n`

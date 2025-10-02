@@ -19,7 +19,7 @@
   "author": "balxz",
   "license": "MIT",
   "dependencies": {
-    "@sh/bot": "github:balxz/b",
+    "@sh/bot": "git+https://github.com/balxz/bb",
     "@sh/tg": "npm:telegraf@4.16.3",
     "axios": "^1.9.0",
     "cfonts": "^3.3.1",
@@ -30,6 +30,7 @@
     "fluent-ffmpeg": "^2.1.2",
     "form-data": "^4.0.0",
     "gradient-string": "^2.0.2",
+    "jimp": "^0.16.13",
     "js-beautify": "^1.15.4",
     "js-confuser": "^2.0.0",
     "module-alias": "^2.2.3",

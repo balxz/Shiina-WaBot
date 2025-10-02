@@ -12,24 +12,38 @@
      * Official: https://balxzzy.web.id
      * Support: https://t.me/sh_team1
  */
+const fs = require("fs")
 require("#src/configs")
 
 exports.is = async (m) => {
-let a = m.isGroup ? m.key.participantAlt : m.key.remoteJid
-let mtdt = await clients.groupMetadata(m.chat)
+  let a = m.isGroup ? m.key.participantAlt : m.key.remoteJid
+  let mtdt = { participants: [], subject: "-" }
+
+  if (m.isGroup) {
+    try {
+      if (clients?.ws?.readyState === 1) {
+        mtdt = await clients.groupMetadata(m.chat)
+      } else {
+        console.log("Clients not found, skip metadata grup.")
+      }
+    } catch (e) {
+      console.error("Error groupMetadata\n", e.message)
+    }
+  }
+
   return {
-    owner: [...owner.no.map((a) => a + "@s.whatsapp.net")].includes(a),
+    owner: [...owner.no.map((x) => x + "@s.whatsapp.net")].includes(a),
     group: m.isGroup,
-    private: m.isGroup,
-    admin: m.isGroup ? mtdt.participants.map(v => v.admin && v.id).includes(a) : false,
-    botadmin: m.isGroup ? mtdt.participants.map(v => v.admin && v.id).includes(clients.decodeJid(clients.user.id)) : false,
+    private: !m.isGroup,
+    admin: m.isGroup ? mtdt.participants.some(v => v?.admin && v.id === a) : false,
+    botadmin: m.isGroup ? mtdt.participants.some(v => v?.admin && v.id === clients.decodeJid(clients.user.id)) : false,
   }
 }
 
 let f = require.resolve(__filename)
 fs.watchFile(f, () => {
-    fs.unwatchFile(f)
-    console.log(`~> UPDATE [ 🪷 ] ${f}`)
-    delete require.cache[f]
-    require(f)
+  fs.unwatchFile(f)
+  console.log(`~> UPDATE [ 🪷 ] ${f}`)
+  delete require.cache[f]
+  require(f)
 })
