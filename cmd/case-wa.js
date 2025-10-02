@@ -42,6 +42,15 @@ module.exports = async (clients, m, mek, scraper) => {
             m?.message?.listResponseMessage?.singleSelectReply?.selectedRowId || m?.text || m?.body : ""
         ) || ""
 
+//TypeError: Cannot read properties of null (reading 'body')
+//    at module.exports (/root/Shiina-WaBot/cmd/case-wa.js:61:77)
+//    at EventEmitter.<anonymous> (/root/Shiina-WaBot/connect.js:77:47)
+//    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+//ReferenceError: cmd is not defined
+//    at module.exports (/root/Shiina-WaBot/cmd/case-wa.js:114:32)
+//    at EventEmitter.<anonymous> (/root/Shiina-WaBot/connect.js:77:47)
+//    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
         let isCmd = false
         let cmd = ""
         let args = []
