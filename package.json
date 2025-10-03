@@ -1,6 +1,6 @@
 {
   "name": "sh-bot",
-  "version": "1.5.5",
+  "version": "1.5.6",
   "description": "A WhatsApp bot based on Shiina-WaBot",
   "main": "index.js",
   "type": "commonjs",

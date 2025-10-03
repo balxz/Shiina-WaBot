@@ -55,12 +55,13 @@ module.exports = async (clients, m, mek, scraper) => {
         let cmd = ""
         let args = []
         let text = ""
+        let uPrfx = ""
 
         if (set.prefix && Array.isArray(set.prefix)) {
-            let usedPrefix = set.prefix.find(p => body.startsWith(p))
-            if (usedPrefix) {
+            uPrfx = set.prefix.find(p => body.startsWith(p))
+            if (uPrfx) {
                 isCmd = true
-                cmd = body.slice(usedPrefix.length).trim().split(/ +/).shift().toLowerCase()
+                cmd = body.slice(uPrfx.length).trim().split(/ +/).shift().toLowerCase()
                 args = body.trim().split(/ +/).slice(1)
                 text = args.join(" ")
             }
@@ -101,7 +102,7 @@ module.exports = async (clients, m, mek, scraper) => {
             default:
                 await Plugins.connect({
                     m,
-                    prefix: set.prefix,
+                    prefix: uPrfx,
                     body,
                     cmd,
                     args,
@@ -132,6 +133,7 @@ module.exports = async (clients, m, mek, scraper) => {
                 quoted: m
             }
         )
+        bail.delay(5000)
     }
 }
 

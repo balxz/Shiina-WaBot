@@ -1,10 +1,14 @@
+/** 
+    commits by FrenzyCore
+    github.com/balxz/Shiina-WaBot/pull/3/commits/e9b25cf2a922e6407f572ef67fb4f845f300aff8
+**/
 const os = require("os");
 
 module.exports = {
     alias: ["status", "speed"],
     command: ["ping"],
     tags: ["info"],
-    desc: "Check bot status & performance",
+    desc: "check performance bot",
     owner: false,
     handler: async (m) => {
         const start = Date.now();
@@ -29,12 +33,12 @@ module.exports = {
         const text = `
 > *BOT STATUS*
 
-> *OS:* ${platform}
-> *CPU:* ${cpu} Core
-> *Memory:* ${formatBytes(memoryUsed)} / ${formatBytes(totalMemory)}
-> *Uptime:* ${(uptime / 3600).toFixed(2)} hours
-> *Node.js:* ${node}
-> *Ping:* ${ping} ms
+> *os:* ${platform}
+> *cpu:* ${cpu} Core
+> *memory:* ${formatBytes(memoryUsed)} / ${formatBytes(totalMemory)}
+> *uptime:* ${(uptime / 3600).toFixed(2)} hours
+> *node.js:* ${node}
+> *ping:* ${ping} ms
     `;
 
         m.reply(text.trim());

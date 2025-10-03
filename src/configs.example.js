@@ -25,6 +25,7 @@ global.set = {
     anticall: true, // rejected pas di tlp
     block: false, //?? true bakal auto block yang tlp
     frmBot: false, // ?true? bot GK respon dri sendiri
+    loading: false, // klau true bakal react pesan comand
     wm: "ˢʰⁱⁱⁿᵃ ᵇᵒᵗ ᵐᵃᵈᵉ ", // set u wm
     pack: "ʷⁱᵗʰ ᵇᵃˡˣᶻᶻʸ" // stc
 }

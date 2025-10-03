@@ -140,9 +140,9 @@ const Plugins = {
                 }
 
                 try {
-                    await m.react("🪷")
+                    if (set.loading) await m.react("🪷")
                     let r = await (plugin.handler || plugin)(m, { ...data, is })
-                    await m.react("")
+                    if (set.loading) await m.react("")
                     return r
                 } catch (e) {
                     console.error(`${plugin.path}\n`, e.stack)
@@ -162,7 +162,7 @@ const Plugins = {
                             quoted: m
                         }
                     )
-                    await m.react("🟥")
+                    if (set.loading) await m.react("🟥")
                 }
             }
         }
