@@ -12,24 +12,21 @@
  * Official: https://balxzzy.web.id
  * Support: https://t.me/sh_team1
  */
-const fs = require("fs")
 require("#src/configs")
 
 exports.is = async (m) => {
   if (!m.message) return
-  let isgr = m.isGroup
-  let bbi = { participants: [], subject: "-" }
 
-  if (isgr) {
-    try {
-      bbi = await clients.groupMetadata(m.chat).catch(() => null)
-    } catch (e) {
-      console.log(e.stack)
+  let bbi = { participants: [], subject: "-" }
+    if (m.isGroup) {
+      bbi = (await clients.groupMetadata(m.chat).catch(e => {
+        console.log(e.stack)
+        return null
+      })) || { participants: [], subject: "-" }
     }
-  }
 
   return {
-    owner: [...owner.no.map((a) => a + "@s.whatsapp.net")].includes(m.sender),
+    owner: owner.no.map(a => a + "@s.whatsapp.net").includes(m.sender),
     group: m.isGroup,
     private: !m.isGroup,
     admin: m.isGroup ? bbi.participants?.some(v => v.admin && v.jid === m.sender) : false,
