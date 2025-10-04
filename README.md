@@ -7,6 +7,9 @@
 [![Node.js](https://img.shields.io/badge/Node.js-16.x%20or%20higher-green.svg)](https://nodejs.org/)
 [![WhatsApp](https://img.shields.io/badge/WhatsApp-Bot-brightgreen.svg)](https://whatsapp.com/)
 [![License](https://img.shields.io/badge/License-Custom-blue.svg)](#aturan-penggunaan)
+<p>
+<img src="https://komarev.com/ghpvc/?username=balxz&label=Profile%20views&color=0e75b6&style=flat" alt="" />
+</p>
 
 Bot WhatsApp dengan sistem plugin yang fleksibel dan mudah dikustomisasi.
 
