@@ -68,7 +68,7 @@ require("#src/configs");
         clients.ev.on("messages.upsert", async chatUpdate => {
             try {
                 let mek = chatUpdate.messages[0]
-                global.m = require("./src/simple").smsg(clients, mek)
+                global.m = require("#src/simple").smsg(clients, mek)
                 if (set.self && ![`${owner.no[0]}@s.whatsapp.net`, clients.user.id].includes(m.sender)) return
                 await db.main(m)
                 if (set.frmBot) {
@@ -105,6 +105,7 @@ require("#src/configs");
             for (let hama of sihama) {
                 if (hama.isGroup == false) {
                     if (hama.status == "offer") {
+                        await clients.rejectCall(hama.id, hama.from)
                         await m.reply("*Hallo.*\n_pengguna saat ini tidak dapat menerima telefon._\n_silahkan tinggalkan pesan penting anda._")
                         if (set.block) {
                             await clients.updateBlockStatus(hama.from, "block")
