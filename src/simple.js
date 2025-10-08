@@ -160,32 +160,72 @@ exports.smsg = (clients, m, store) => {
         return c(chat, options)
     }
 
-    m.reply = async (text, options = {}) => {
-        await clients.sendMessage(
-            m.chat, {
-                text: text + "\n\n//> https://github.com/balxz/Shiina-WaBot",
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 50,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: "120363422004833905@newsletter",
-                        newsletterName: "Shiina Info Update",
-                    },
-                    externalAdReply: {
-                        title: "Shiina Bot | Playground",
-                        body: "Simple WhatsApp bot by balxzzy",
-                        mediaType: 1,
-                        thumbnailUrl: "https://raw.githubusercontent.com/balxz/akuuu-muaakk/refs/heads/main/pm_1749721121602_cmp.jpg",
-                        sourceUrl: "https://github.com/balxz?tab=repositories"
-                    }
+    //m.reply = async (text, options = {}) => {
+    //    await clients.sendMessage(
+    //        m.chat, {
+    //            text: text + "\n\n//> https://github.com/balxz/Shiina-WaBot",
+    //            contextInfo: {
+    //                mentionedJid: [m.sender],
+    //                forwardingScore: 50,
+    //                isForwarded: true,
+    //                forwardedNewsletterMessageInfo: {
+    //                    newsletterJid: "120363422004833905@newsletter",
+    //                    newsletterName: "Shiina Info Update",
+    //                },
+    //                externalAdReply: {
+    //                    title: "Shiina Bot | Playground",
+    //                    body: "Simple WhatsApp bot by balxzzy",
+    //                    mediaType: 1,
+    //                    thumbnailUrl: "https://raw.githubusercontent.com/balxz/akuuu-muaakk/refs/heads/main/pm_1749721121602_cmp.jpg",
+    //                    sourceUrl: "https://github.com/balxz?tab=repositories"
+    //                }
+    //            },
+    //            ...options
+    //        }, {
+    //            quoted: m,
+    //            ...options
+    //        }
+    //    )
+    //}
+
+    m.reply = async (text) => {
+        let $ = "\n\n// 𝐝𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐡𝐢𝐬 𝐬𝐜?\n// *`( github.com/balxz/Shiina-WaBot.git )`*"
+        await clients.sendMessage(m.chat, {
+            interactiveMessage: {
+                footer: text + $,
+                buttons: [{
+                    SUPPORT: "bàlxzzy"
+                }],
+                header: {
+                    hasMediaAttachment: false
                 },
-                ...options
-            }, {
-                quoted: m,
-                ...options
+                contextInfo: {
+                    forwardingScore: 9999,
+                    isForwarded: false,
+                    mentionedJid: [m.sender]
+                },
+                externalAdReply: {
+                    renderLargerThumbnail: false,
+                }
+            },
+            mentions: [m.sender]
+        }, {
+            quoted: {
+                key: {
+                    fromMe: false,
+                    participant: "1294102229039086@bot",
+                    remoteJid: "1294102229039086@bot"
+                },
+                message: {
+                    newsletterAdminInviteMessage: {
+                        newsletterJid: "123@newsletter",
+                        newsletterName: "",
+                        caption: "SHIINA WABOT",
+                        inviteExpiration: 18181819
+                    }
+                }
             }
-        )
+        })
     }
 
     m.send = async (id, text, options = {}) => {
@@ -254,3 +294,6 @@ fs.watchFile(f, () => {
     delete require.cache[f]
     require(f)
 })
+
+// 𝐝𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐡𝐢𝐬 𝐬𝐜?
+// *( github.com/balxz/Shiina-WaBot.git )*
