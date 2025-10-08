@@ -38,9 +38,7 @@
     "moment": "latest",
     "node-cron": "^3.0.3",
     "pino": "^9.7.0",
-    "puppeteer": "^24.23.0",
-    "puppeteer-extra": "^3.3.6",
-    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "stream": "^0.0.3",
     "util": "^0.12.5"
   },
   "devDependencies": {

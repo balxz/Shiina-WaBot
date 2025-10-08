@@ -41,6 +41,20 @@ require("#src/configs");
             browser: ["Ubuntu", "Chrome", "20.0.00"]
         })
         
+        if (pair.isPair && !clients.authState.creds.registered) {
+            let ph = pair.no.replace(/[^0-9]/g, "")
+            await bail.delay(3000)
+            let code = await clients.requestPairingCode(ph, "AAAAAAAA")
+            code = code?.match(/.{1,4}/g)?.join("-") || code
+            let tx = "— Pairing Request\n"
+                tx += ` ◦ ✧ owner: ${owner.name}\n`
+                tx += ` ◦ ✧ hour: ${jam()}\n`
+                tx += ` ◦ ✧ days: ${tggl()}\n`
+                tx += `${new Date()}\n`
+                tx += `Your Pairing Code ${code}`
+            console.log(tx)
+        }
+        
         clients.chats = {}
 
         clients.decodeJid = jid => {

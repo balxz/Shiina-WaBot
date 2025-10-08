@@ -18,7 +18,7 @@ module.exports = {
     command: ["prettier"],
     tags: ["private"],
     desc: ["prettier ur code"],
-    private: true,
+    private: false,
     handler: async m => {
         if (!m.quoted)
             return m.reply(await m.detect("[ 🪷 ] balas codenya nya"))
