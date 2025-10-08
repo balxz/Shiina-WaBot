@@ -1,9 +1,7 @@
 const fs = require("fs")
 const axios = require("axios")
 const crypto = require("crypto")
-
-// Simpan sesi ke file
-const SESSION_FILE = "./kimi_sessions.json"
+let SESSION_FILE = "./kimi_sessions.json"
 function loadSessions() {
   if (!fs.existsSync(SESSION_FILE)) return {}
   return JSON.parse(fs.readFileSync(SESSION_FILE, "utf-8"))
@@ -15,7 +13,6 @@ function saveSessions(data) {
 class KimiScraper {
   constructor() {
     this.baseURL = "https://www.kimi.com/api"
-    // TOKEN UDAH LANGSUNG DI ISI
     this.token = "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ1c2VyLWNlbnRlciIsImV4cCI6MTc2MjE1OTU0NSwiaWF0IjoxNzU5NTY3NTQ1LCJqdGkiOiJkM2dkdGVlNnM0dDR2cXFnaHFsMCIsInR5cCI6ImFjY2VzcyIsImFwcF9pZCI6ImtpbWkiLCJzdWIiOiJkM2dkdGVlNnM0dDR2cXFnaHFqZyIsInNwYWNlX2lkIjoiZDNnZHRlNjZzNHQ0dnFxZ2htN2ciLCJhYnN0cmFjdF91c2VyX2lkIjoiZDNnZHRlNjZzNHQ0dnFxZ2htNzAiLCJzc2lkIjoiMTczMTQyOTU0NzY0NTM2MTk3NiIsImRldmljZV9pZCI6Ijc1NTcyODQyNjIwMTQxNDcwODAiLCJyZWdpb24iOiJvdmVyc2VhcyIsIm1lbWJlcnNoaXAiOnsibGV2ZWwiOjEwfX0.CEECs1EyPwYmxdf_NaWGhAbCvV70E_OoaOyrojYGfw72qagasXujNI0Tvg1kYjHqYieeJyCoBMG2xaKwoi9bGg"
     this.deviceId = this.#generateDeviceId()
 
@@ -108,16 +105,16 @@ module.exports = {
   alias: ["kimi"],
   command: ["kimi"],
   tags: ["ai"],
-  desc: ["Chat dengan Kimi AI"],
+  desc: ["Kimi AI"],
   owner: false,
   handler: async (m, { text }) => {
-    if (!text) return m.reply("Ketik pertanyaan.\nContoh: .kimi halo")
+    if (!text) return m.reply("ya? kenapa")
 
     try {
       let answer = await kimi.chat(m.sender, text)
       await m.reply(answer)
     } catch {
-      await m.reply("Gagal ambil jawaban dari Kimi.")
+      await m.reply("failed fetching api.")
     }
   }
 }
