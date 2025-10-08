@@ -77,17 +77,11 @@ require("#src/configs");
                 tele()
             } else if (connection === "open") {
                 console.log("[ 🪷 ] — connected")
-                let gcnya = (await clients.groupFetchAllParticipating().catch(() => ({}))) || {}
-                let gcid = Object.keys(gcnya)
-                for (let i = 0; i < gcid.length; i++) {
-                    let id = gcid[i]
-                    try {
-                        clients.chats[id] = await clients.groupMetadata(id)
-                    } catch (e) {
-                        console.error(`failed get data group ${id}: ${e}`)
-                    }
-                    await bail.delay(1500)
-                }
+                let gcny = (await clients.groupFetchAllParticipating().catch(() => ({}))) || {}
+                        for (let id in gcny) {
+                          clients.chats[id] = gcny[id]
+                          bail.delay(500)
+                        }
             } else if (connection === "connecting") {
                 console.log("[ 🪷 ] — connecting")
             }
