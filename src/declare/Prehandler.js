@@ -14,23 +14,16 @@
  */
 require("#src/configs")
 
-exports.is = async (m) => {
+exports.is = async (m, clients) => {
   if (!m.message) return
-
-  let bbi = { participants: [], subject: "-" }
-    if (m.isGroup) {
-      bbi = (await clients.groupMetadata(m.chat).catch(e => {
-        console.log(e.stack)
-        return null
-      })) || { participants: [], subject: "-" }
-    }
+  let bbi = m.isGroup && clients.chats && clients.chats[m.chat]
 
   return {
     owner: owner.no.map(a => a + "@s.whatsapp.net").includes(m.sender),
     group: m.isGroup,
     private: !m.isGroup,
-    admin: m.isGroup ? bbi.participants?.some(v => v.admin && v.jid === m.sender) : false,
-    botadmin: m.isGroup ? bbi.participants?.some(v => v.admin && v.jid === clients.decodeJid(clients.user.id)) : false
+    admin: m.isGroup ? bbi?.participants?.some(v => v.admin && v.jid === m.sender) : false,
+    botadmin: m.isGroup ? bbi?.participants?.some(v => v.admin && v.jid === clients.decodeJid(clients.user.id)) : false
   }
 }
 

@@ -80,7 +80,7 @@ const Plugins = {
         }
 
         let { cmd, args, text, m } = data
-        let is = await require("#declare/Prehandler").is(m)
+        let is = await require("#declare/Prehandler").is(m, clients)
 
         if (!cmd) {
             for (let plugin of plugins) {

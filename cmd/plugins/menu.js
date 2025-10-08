@@ -19,7 +19,7 @@ module.exports = {
     owner: false,
     handler: async (m, { prefix, db, jam, tggl, runtime }) => {
         let abcd = `*乂 ɪ ɴ ғ ᴏ  ᴜ s ᴇ ʀ*\n`
-        abcd += `> *name : ${m.pushName.toLowerCase()}*\n`
+        abcd += `> *name : ${m.pushName.toLowerCase() || "-"}*\n`
         abcd += `> *number : ${"0" + m.sender.split("@")[0].slice(2)}*\n`
         abcd += `> *role : ${db.get("user", m.sender).role}*\n`
         abcd += `–\n`

@@ -73,7 +73,7 @@ module.exports = async (clients, m, mek, scraper) => {
         }
 
         if (!isCmd || !cmd) return
-        let is = await require("#declare/Prehandler").is(m)
+        let is = await require("#declare/Prehandler").is(m, clients)
 
         switch (cmd) {
             case "ev": { // @owner @eval

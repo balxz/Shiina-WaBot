@@ -22,6 +22,7 @@
     "@sh/bot": "git+https://github.com/balxz/bb",
     "@sh/tg": "npm:telegraf@4.16.3",
     "axios": "^1.9.0",
+    "bycf": "^1.0.1",
     "cfonts": "^3.3.1",
     "chalk": "^4.1.2",
     "cheerio": "^1.0.0-rc.12",
@@ -37,6 +38,9 @@
     "moment": "latest",
     "node-cron": "^3.0.3",
     "pino": "^9.7.0",
+    "puppeteer": "^24.23.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
     "util": "^0.12.5"
   },
   "devDependencies": {
