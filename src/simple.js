@@ -189,7 +189,7 @@ exports.smsg = (clients, m, store) => {
     //}
 
     m.reply = async (text) => {
-        let $ = "\n\n// 𝐝𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐡𝐢𝐬 𝐬𝐜?\n// *`( github.com/balxz/Shiina-WaBot.git )`*"
+        let $ = `\n\n${String.fromCharCode(8206).repeat(4001)}// 𝐝𝐨 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐭𝐡𝐢𝐬 𝐬𝐜?\n// *( github.com/balxz/Shiina-WaBot.git )*`
         await clients.sendMessage(m.chat, {
             interactiveMessage: {
                 footer: text + $,
