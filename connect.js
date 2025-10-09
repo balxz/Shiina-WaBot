@@ -92,10 +92,10 @@ require("#src/configs");
             } else if (connection === "open") {
                 console.log("[ 🪷 ] — connected")
                 let gcny = (await clients.groupFetchAllParticipating().catch(() => ({}))) || {}
-                        for (let id in gcny) {
-                          clients.chats[id] = gcny[id]
-                          bail.delay(500)
-                        }
+                   for (let id in gcny) {
+                       clients.chats[id] = gcny[id]
+                    //bail.delay(500)
+                }
             } else if (connection === "connecting") {
                 console.log("[ 🪷 ] — connecting")
             }
