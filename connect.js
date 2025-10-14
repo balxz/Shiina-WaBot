@@ -38,6 +38,7 @@ require("#src/configs");
             logger: pino({ level: "silent" }),
             printQRInTerminal: !pair.isPair,
             auth: state,
+            version: [2, 3000, 1027934701],
             browser: ["Ubuntu", "Chrome", "20.0.00"]
         })
         
